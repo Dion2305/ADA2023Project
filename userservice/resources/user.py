@@ -19,6 +19,7 @@ class User:
                 user = UserDAO(
                     email=post_data.get('email'),
                     password=post_data.get('password')
+
                 )
 
                 # insert the user

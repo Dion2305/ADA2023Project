@@ -105,3 +105,39 @@ class LoginAPI:
                 'error': e
             }
             return make_response(jsonify(responseObject)), 500
+
+
+    def addshippinginformation(post_data):
+
+        try:
+            # fetch the user data
+            session = Session()
+            # check if user already exists
+            user = session.query(UserDAO).filter(UserDAO.email == post_data.get('email')).first()
+            if user.password == post_data.get('password'):
+                user.address = post_data.get('address')
+                user.city = post_data.get('city')
+                user.zip = post_data.get('zip')
+                responseObject = {
+                    'status': 'success',
+                    'message': 'Shipping details changed succesfully.',
+                    'New Details': '{} {} {}'.format(user.address, user.city, user.zip)
+                }
+                session.commit()
+                session.close()
+                return make_response(jsonify(responseObject)), 200
+            else:
+                responseObject = {
+                    'status': 'fail',
+                    'message': 'Incorrect username/password'
+                }
+                session.close()
+                return make_response(jsonify(responseObject)), 404
+        except Exception as e:
+            print(e)
+            responseObject = {
+                'status': 'fail',
+                'message': 'Try again',
+                'error': e
+            }
+            return make_response(jsonify(responseObject)), 500
