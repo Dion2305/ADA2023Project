@@ -16,13 +16,14 @@ class LoginAPI:
             # check if user already exists
             user = session.query(UserDAO).filter(UserDAO.email == post_data.get('email')).first()
             session.close()
-            if user and user.password == post_data.get('password'):
+            if user and (user.password == post_data.get('password')):
                 auth_token = encode_auth_token(user.id)
                 if auth_token:
                     responseObject = {
                         'status': 'success',
                         'message': 'Successfully logged in.',
-                        'auth_token': auth_token
+                        'auth_token': auth_token,
+                        'password': user.password
                     }
                 return make_response(jsonify(responseObject)), 200
             else:
