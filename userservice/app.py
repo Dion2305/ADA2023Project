@@ -35,5 +35,11 @@ def changepassword():
     req_data = request.get_json()
     return LoginAPI.changepassword(req_data)
 
+@app.route('/removeaccount', methods=['POST'])
+def removeaccount():
+    # Changes the password
+    req_data = request.get_json()
+    return LoginAPI.removeaccount(req_data)
+
 
 app.run(host='0.0.0.0', port=5000)

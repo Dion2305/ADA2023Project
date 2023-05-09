@@ -29,7 +29,7 @@ class LoginAPI:
             else:
                 responseObject = {
                     'status': 'fail',
-                    'message': 'There is no user.',
+                    'message': 'There is no user/incorrect password.',
                 }
             return make_response(jsonify(responseObject)), 404
         except Exception as e:
@@ -61,6 +61,39 @@ class LoginAPI:
                 responseObject = {
                     'status': 'fail',
                     'message': 'Incorrect password'
+                }
+                session.close()
+                return make_response(jsonify(responseObject)), 404
+        except Exception as e:
+            print(e)
+            responseObject = {
+                'status': 'fail',
+                'message': 'Try again',
+                'error': e
+            }
+            return make_response(jsonify(responseObject)), 500
+
+
+    def removeaccount(post_data):
+
+        try:
+            # fetch the user data
+            session = Session()
+            # check if user already exists
+            user = session.query(UserDAO).filter(UserDAO.email == post_data.get('email')).first()
+            if user.password == post_data.get('password'):
+                session.delete(user)
+                responseObject = {
+                    'status': 'success',
+                    'message': 'Account removed succesfully.',
+                }
+                session.commit()
+                session.close()
+                return make_response(jsonify(responseObject)), 200
+            else:
+                responseObject = {
+                    'status': 'fail',
+                    'message': 'Incorrect username/password'
                 }
                 session.close()
                 return make_response(jsonify(responseObject)), 404
