@@ -32,7 +32,7 @@ def verify():
 @app.route('/changepassword', methods=['POST'])
 def change_password():
     # Changes the password
-    req_data = request.get_json
+    req_data = request.get_json()
     return LoginAPI.ChangePassword(req_data)
 
 
