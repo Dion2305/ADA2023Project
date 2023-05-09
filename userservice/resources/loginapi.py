@@ -54,6 +54,7 @@ class LoginAPI:
                     'message': 'Password succesfully changed.',
                     'new_passowrd': user.password
                 }
+                session.commit()
                 session.close()
                 return make_response(jsonify(responseObject)), 200
             else:
