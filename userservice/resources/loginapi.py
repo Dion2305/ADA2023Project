@@ -48,7 +48,7 @@ class LoginAPI:
             # check if user already exists
             user = session.query(UserDAO).filter(UserDAO.email == post_data.get('email')).first()
             if user.password == post_data.get('password'):
-                user.ChangePassword(post_data.get('new_password'))
+                user.password = (post_data.get('new_password'))
                 responseObject = {
                     'status': 'success',
                     'message': 'Password succesfully changed.',
