@@ -1,7 +1,7 @@
 from flask import Flask, request
 
 from db import Base, engine
-from resources.loginapi import LoginAPI
+from resources.loginapi import LoginAPI, Password
 from resources.user import User
 
 app = Flask(__name__)
@@ -33,7 +33,7 @@ def verify():
 def changepassword():
     # Changes the password
     req_data = request.get_json()
-    return LoginAPI.changepassword(req_data)
+    return Password.changepassword(req_data)
 
 
 app.run(host='0.0.0.0', port=5000)
