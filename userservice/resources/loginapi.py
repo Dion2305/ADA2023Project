@@ -50,7 +50,8 @@ class LoginAPI:
                 user.ChangePassword(post_data.get('new_password'))
                 responseObject = {
                     'status': 'success',
-                    'message': 'Password succesfully changed.'
+                    'message': 'Password succesfully changed.',
+                    'new_passowrd': user.password
                 }
                 session.close()
                 return make_response(jsonify(responseObject)), 200
