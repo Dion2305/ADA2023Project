@@ -68,7 +68,8 @@ class LoginAPI:
     #             'message': 'Try again'
     #         }
     #         return make_response(jsonify(responseObject)), 500
-    def ChangePassword(post_data):
+    @staticmethod
+    def changepassword(post_data):
 
         try:
             # fetch the user data

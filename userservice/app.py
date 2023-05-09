@@ -30,10 +30,10 @@ def verify():
 
 
 @app.route('/changepassword', methods=['POST'])
-def change_password():
+def changepassword():
     # Changes the password
     req_data = request.get_json()
-    return LoginAPI.ChangePassword(req_data)
+    return LoginAPI.changepassword(req_data)
 
 
 app.run(host='0.0.0.0', port=5000)
