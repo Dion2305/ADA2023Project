@@ -41,5 +41,10 @@ def removeaccount():
     req_data = request.get_json()
     return LoginAPI.removeaccount(req_data)
 
+@app.route('/removeaccount', methods=['POST'])
+def addshippinginformation():
+    # Changes the password
+    req_data = request.get_json()
+    return LoginAPI.addshippinginformation(req_data)
 
 app.run(host='0.0.0.0', port=5000)
