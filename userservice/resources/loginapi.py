@@ -39,7 +39,7 @@ class LoginAPI:
             }
             return make_response(jsonify(responseObject)), 500
 
-    def ChangePassword(post_data):
+    def changepassword(post_data):
 
         try:
             # fetch the user data
