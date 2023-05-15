@@ -47,21 +47,8 @@ class Shipment:
         status_code = result.status_code
         print(status_code)
         session.close()
-        return [status_code, jsonify(result)]
+        return [status_code, result]
 
-        # session = Session()
-        # user = post_data.get('user')
-        # if 'AUTH_URL' in os.environ:
-        #     auth_url = os.environ['AUTH_URL']
-        # else:
-        #     auth_url = 'http://accounts_ct:5000/get_user'
-        # result = requests.post(auth_url,
-        #                        headers={'Content-Type': 'application/json',
-        #                                 'Authorization': auth_header})
-        # status_code = result.status_code
-        # print(status_code)
-        # print(result.json())
-        # return [status_code, result.json()]
 
 
 
