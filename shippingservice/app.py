@@ -19,7 +19,7 @@ def create_shipment():
 @app.route('/shipments/<s_id>', methods=['GET'])
 def get_shipment(s_id):
     result = Shipment.get_user_data(s_id)
-    return Shipment.get_shipment(s_id)
+    return result
 
 
 app.run(host='0.0.0.0', port=5000)
