@@ -41,21 +41,14 @@ class Shipment:
         else:
             auth_url = 'http://accounts_ct:5000/get_user'
 
-        print(requests.post(auth_url,
+        result = requests.post(auth_url,
                       headers={'Content-Type': 'application/json',
-                               'user': s_id}))
-
-        if shipment:
-            text_out = {
-                "shipment_id:": s_id,
-                "user:": shipment.user,
-                "package_id": shipment.package_id,
-            }
-            session.close()
-            return jsonify(text_out), 200
-        else:
-            session.close()
-            return jsonify({'message': f'There is no shipment with id {s_id}'}), 404
+                               'user': s_id})
+        text_out = {
+            "shipment_id:": result,
+        }
+        session.close()
+        return jsonify(text_out), 200
 
         # session = Session()
         # user = post_data.get('user')
