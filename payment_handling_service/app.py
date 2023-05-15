@@ -12,7 +12,7 @@ def pay():
     authorized = check_if_authorize(request)
     if authorized[0] == 200:
         req_data = request.get_json()
-        return PaymentAPI.pay(req_data, authorized[1].get('email'))
+        return PaymentAPI.pay(req_data, authorized[1]['data']['email'])
     else:
         responseObject = {
             'status': 'fail',
@@ -33,7 +33,7 @@ def check_if_authorize(req):
     status_code = result.status_code
     print(status_code)
     print(result.json())
-    return [status_code, result]
+    return [status_code, result.json()]
 
 
 app.run(host='0.0.0.0', port=5000)
