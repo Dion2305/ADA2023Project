@@ -6,7 +6,7 @@ from db import Base
 
 class PaymentDAO(Base):
     """ Payment Model for storing payment related details """
-    __tablename__ = "payment_information"
+    __tablename__ = "payment"
 
     id = Column(Integer, primary_key=True, autoincrement=True)
     user = Column(String(255), nullable=True)
