@@ -42,7 +42,7 @@ class Shipment:
 
 
     @staticmethod
-    def get(s_id):
+    def get_shipment(s_id):
         session = Session()
         # https://docs.sqlalchemy.org/en/14/orm/query.html
         # https://www.tutorialspoint.com/sqlalchemy/sqlalchemy_orm_using_query.htm
