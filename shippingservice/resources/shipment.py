@@ -9,22 +9,28 @@ class Shipment:
     @staticmethod
     def create_shipment(post_data):
         session = Session()
-        shipment = ShippingDAO(
-            user=post_data.get('user_id'),
-            package_id=post_data.get('package_id'),
-            status=post_data.get('status'))
+        if post_data.get('status') == "payed":
+            shipment = ShippingDAO(
+                user=post_data.get('user_id'),
+                package_id=post_data.get('package_id'),
+                status=post_data.get('status'))
 
-        session.add(shipment)
-        session.commit()
-        responseObject = {
-            'status': 'success',
-            'message': 'Successfully created shipping request.',
-            'shipment_id': shipment.id
-        }
-        session.close()
-        return make_response(jsonify(responseObject)), 200
+            session.add(shipment)
+            session.commit()
+            responseObject = {
+                'status': 'success',
+                'message': 'Successfully created shipping request.',
+                'shipment_id': shipment.id
+            }
+            session.close()
+            return make_response(jsonify(responseObject)), 200
+        else:
+            responseObject = {
+                'status': 'Failed',
+                'message': 'Payment has not been received yet.'
+            }
 
-        # shipment = session.query(ShippingDAO).filter(ShippingDAO.user == authorized_user).first()
+            # shipment = session.query(ShippingDAO).filter(ShippingDAO.user == authorized_user).first()
         # if not shipment:
         #     try:
         #         shipment = ShippingDAO(
