@@ -46,7 +46,7 @@ class Shipment:
         status_code = result.status_code
         print(status_code)
         session.close()
-        return [status_code, result.json()]
+        return [status_code, result]
 
         # session = Session()
         # user = post_data.get('user')
