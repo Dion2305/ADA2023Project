@@ -12,6 +12,6 @@ COPY . .
 EXPOSE 5000
 # Enviroment Variables
 ENV DB_URL  sqlite:///shipping.db
-ENV AUTH_URL  http://userservice_ct:5000/verify
+ENV AUTH_URL  http://shipping_ct:5000/verify
 # Run our App
 CMD ["python3","app.py"]
