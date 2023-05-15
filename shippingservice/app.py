@@ -1,9 +1,8 @@
-import os
-
-import requests
 from flask import Flask, request, make_response, jsonify
-
+import os
+import requests
 from db import Base, engine
+
 from resources.shipment import Shipment
 
 app = Flask(__name__)
@@ -21,3 +20,5 @@ def create_shipment():
 def get_shipment(s_id):
     req_data = request.get_json()
     return Shipment.get_shipment(s_id)
+
+app.run(host='0.0.0.0', port=5000)
