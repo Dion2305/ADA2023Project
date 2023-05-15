@@ -2,9 +2,11 @@ from flask import Flask, request, make_response, jsonify
 from resources.payment import PaymentAPI
 import os
 import requests
+from db import Base, engine
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
+Base.metadata.create_all(engine)
 
 
 @app.route('/pay', methods=['POST'])

@@ -12,5 +12,6 @@ COPY . .
 EXPOSE 5001
 #Environment variables
 ENV AUTH_URL  http://accounts_ct:5000/verify
+ENV DB_URL 'sqlite:///user.db'
 # Run our App
 CMD ["python3","app.py"]
