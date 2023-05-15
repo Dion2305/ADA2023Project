@@ -10,12 +10,12 @@ class ShippingDAO(Base):
     __tablename__ = "shipments"
 
     id = Column(Integer, primary_key=True)  # Auto generated primary key
-    status = Column(String(255), nullable=False)
-    package_id = Column(Integer, nullable=False)
-    user_id = Column(Integer, nullable=False)
+    user = Column(String(255), nullable=True)
+    status = Column(String(255), nullable=True)
+    package_id = Column(Integer, nullable=True)
 
 
-    def __init__(self, status, packageId, userId):
+    def __init__(self, user, status, packageId):
+        self.user = user
         self.status = status
         self.package_id = packageId
-        self.user_id = userId

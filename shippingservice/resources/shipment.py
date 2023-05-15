@@ -7,14 +7,38 @@ from db import Session
 
 class Shipment:
     @staticmethod
-    def create(body):
+    def create_shipment(post_data, authorized_user):
         session = Session()
-        shipment = ShippingDAO(body['user_id'], body['package_id'], body['status'])
-        session.add(shipment)
-        session.commit()
-        session.refresh(shipment)
-        session.close()
-        return jsonify({'shipment_id': shipment.id}), 200
+        shipment = session.query(ShippingDAO).filter(ShippingDAO.user == authorized_user).first()
+        if not shipment:
+            try:
+                shipment = ShippingDAO(
+                    user = authorized_user,
+                    package_id = post_data.get('package_id'),
+                    status = post_data.get('status'))
+
+                session.add(shipment)
+                session.commit()
+                responseObject = {
+                    'status': 'success',
+                    'message': 'Successfully requested shipping.'
+                    }
+                session.close()
+                return make_response(jsonify(responseObject)), 200
+            except Exception as e:
+                print(e)
+                responseObject = {
+                    'status': 'fail',
+                    'message': 'Some error occurred. Please try again.'
+                }
+                return make_response(jsonify(responseObject)), 401
+        else:
+                responseObject = {
+                    'status': 'fail',
+                    'message': 'Shipment already exists.',
+                }
+                return make_response(jsonify(responseObject)), 202
+
 
     @staticmethod
     def get(s_id):
