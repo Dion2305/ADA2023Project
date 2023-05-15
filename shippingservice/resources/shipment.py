@@ -29,6 +29,7 @@ class Shipment:
                 'status': 'Failed',
                 'message': 'Payment has not been received yet.'
             }
+            return make_response(jsonify(responseObject)), 202
 
             # shipment = session.query(ShippingDAO).filter(ShippingDAO.user == authorized_user).first()
         # if not shipment:
