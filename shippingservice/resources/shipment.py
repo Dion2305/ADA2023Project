@@ -32,7 +32,7 @@ class Shipment:
             return make_response(jsonify(responseObject)), 202
 
     @staticmethod
-    def get_user_data(post_data):
+    def get_user_data(s_id):
         session = Session()
         shipment = session.query(ShippingDAO).filter(ShippingDAO.id == s_id).first()
 
@@ -61,5 +61,6 @@ class Shipment:
         # print(status_code)
         # print(result.json())
         # return [status_code, result.json()]
+
 
 
