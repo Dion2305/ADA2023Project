@@ -15,7 +15,7 @@ class ShippingDAO(Base):
     package_id = Column(Integer, nullable=True)
 
 
-    def __init__(self, user, status, packageId):
+    def __init__(self, user, status, package_id):
         self.user = user
         self.status = status
-        self.package_id = packageId
+        self.package_id = package_id
