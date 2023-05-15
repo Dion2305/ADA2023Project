@@ -45,11 +45,11 @@ class Shipment:
                       headers={'Content-Type': 'application/json',
                                'user': s_id})
 
-        text_out = {
-            "shipment_id:": result.json(),
-        }
+        status_code = result.status_code
+        print(status_code)
+        print(result.json())
         session.close()
-        return jsonify(text_out), 200
+        return [status_code, result.json()]
 
         # session = Session()
         # user = post_data.get('user')
