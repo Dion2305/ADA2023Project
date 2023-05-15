@@ -44,8 +44,9 @@ class Shipment:
         result = requests.post(auth_url,
                       headers={'Content-Type': 'application/json',
                                'user': s_id})
+
         text_out = {
-            "shipment_id:": result,
+            "shipment_id:": result.json(),
         }
         session.close()
         return jsonify(text_out), 200
