@@ -3,6 +3,7 @@ from flask import jsonify, make_response
 import requests
 from daos.shipping_dao import ShippingDAO
 from db import Session
+import os
 
 
 class Shipment:
