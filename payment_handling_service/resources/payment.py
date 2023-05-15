@@ -24,7 +24,8 @@ class PaymentAPI:
                 print(e)
                 responseObject = {
                     'status': 'fail',
-                    'message': 'Some error occurred. Please try again.'
+                    'message': 'Some error occurred. Please try again.',
+                    'error': e
                 }
                 return make_response(jsonify(responseObject)), 401
 
