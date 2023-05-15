@@ -1,6 +1,6 @@
 from datetime import datetime
 from flask import jsonify, make_response
-
+import requests
 from daos.shipping_dao import ShippingDAO
 from db import Session
 
@@ -34,7 +34,15 @@ class Shipment:
     @staticmethod
     def get_user_data(s_id):
         session = Session()
-        shipment = session.query(ShippingDAO).filter(ShippingDAO.id == s_id).first()
+
+        if 'AUTH_URL' in os.environ:
+            auth_url = os.environ['AUTH_URL']
+        else:
+            auth_url = 'http://accounts_ct:5000/get_user'
+
+        requests.post(auth_url,
+                      headers={'Content-Type': 'application/json',
+                               'user': s_id})
 
         if shipment:
             text_out = {
