@@ -45,7 +45,6 @@ class Shipment:
 
         status_code = result.status_code
         print(status_code)
-        print(result.json())
         session.close()
         return [status_code, result.json()]
 
