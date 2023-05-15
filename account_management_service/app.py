@@ -48,5 +48,10 @@ def addshippinginformation():
     req_data = request.get_json()
     return AccountsAPI.addshippinginformation(req_data)
 
+@app.route('/get_user', methods=['POST'])
+def getuser():
+    # get the auth token
+    req_data = request.get_json()
+    return AccountsAPI.get_user(req_data)
 
 app.run(host='0.0.0.0', port=5000)

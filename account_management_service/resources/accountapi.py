@@ -204,3 +204,22 @@ class AccountsAPI:
                 'error': e
             }
             return make_response(jsonify(responseObject)), 500
+
+    @staticmethod
+    def get_user(post_data):
+        session = Session()
+        # https://docs.sqlalchemy.org/en/14/orm/query.html
+        # https://www.tutorialspoint.com/sqlalchemy/sqlalchemy_orm_using_query.htm
+        user = session.query(UserDAO).filter(UserDAO.id == post_data.get('user')).first()
+        if user:
+            responseObject = {
+                "user:": user.id,
+                "address": user.address,
+                "city": user.city,
+                "zip": user.zip
+            }
+            session.close()
+            return make_response(jsonify(responseObject)), 200
+        else:
+            session.close()
+            return jsonify({'message': f'There is no user with this id'}), 404
