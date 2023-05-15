@@ -17,7 +17,7 @@ def create_shipment():
     return Shipment.create_shipment(req_data)
 
 @app.route('/shipments/<s_id>', methods=['GET'])
-def get_shipment(d_id):
+def get_shipment(s_id):
     req_data = request.get_json()
     return Shipment.get_shipment(s_id)
 
