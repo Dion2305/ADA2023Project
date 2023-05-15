@@ -12,3 +12,9 @@ services:
     container_name: payment_ct
     ports:
       - "5001:5000"
+  shippingservice:
+    build:
+      context: ./shippingservice
+    container_name: shipping_ct
+    ports:
+      - "5002:5000"
