@@ -40,9 +40,9 @@ class Shipment:
         else:
             auth_url = 'http://accounts_ct:5000/get_user'
 
-        result = requests.post(url = auth_url,
-                               headers = {"Content-type": "application/json"},
-                               body={"user": s_id})
+        result = requests.post(url=auth_url,
+                               headers={"Content-type": "application/json"},
+                               json={"user": s_id})
 
         status_code = result.status_code
         print(status_code)
