@@ -6,3 +6,9 @@ services:
     container_name: accounts_ct
     ports:
       - "5000:5000"
+  payment_handling_service:
+    build:
+      context: ./payment_handling_service
+    container_name: payment_ct
+    ports:
+      - "5001:5000"
