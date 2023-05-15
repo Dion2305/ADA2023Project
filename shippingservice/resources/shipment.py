@@ -26,7 +26,7 @@ class Shipment:
             return make_response(jsonify(responseObject)), 200
         else:
             responseObject = {
-                'status': 'Failed',
+                'status': 'Failed2',
                 'message': 'Payment has not been received yet.'
             }
             return make_response(jsonify(responseObject)), 202
