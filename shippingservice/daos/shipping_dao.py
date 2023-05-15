@@ -16,6 +16,6 @@ class ShippingDAO(Base):
 
 
     def __init__(self, status, packageId, userId):
-        self.status = None
-        self.package_id = None
-        self.user_id = None
+        self.status = status
+        self.package_id = packageId
+        self.user_id = userId
