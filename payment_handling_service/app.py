@@ -9,9 +9,10 @@ app.config["DEBUG"] = True
 
 @app.route('/pay', methods=['POST'])
 def pay():
-    if check_if_authorize(request) == 200:
+    if check_if_authorize(request)[0] == 200:
         req_data = request.get_json()
-        return PaymentAPI.pay(req_data)
+        return check_if_authorize(request)[1]
+        # return PaymentAPI.pay(req_data)
     else:
         responseObject = {
             'status': 'fail',
@@ -32,7 +33,7 @@ def check_if_authorize(req):
     status_code = result.status_code
     print(status_code)
     print(result.json())
-    return status_code
+    return [status_code, result]
 
 
 app.run(host='0.0.0.0', port=5000)
