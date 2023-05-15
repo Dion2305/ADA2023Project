@@ -34,7 +34,7 @@ class Shipment:
     @staticmethod
     def get_user_data(post_data):
         session = Session()
-        id = post_data.get('user')
+        user = post_data.get('user')
         if 'AUTH_URL' in os.environ:
             auth_url = os.environ['AUTH_URL']
         else:
