@@ -40,9 +40,9 @@ class Shipment:
         else:
             auth_url = 'http://accounts_ct:5000/get_user'
 
-        requests.post(auth_url,
+        print(requests.post(auth_url,
                       headers={'Content-Type': 'application/json',
-                               'user': s_id})
+                               'user': s_id}))
 
         if shipment:
             text_out = {
