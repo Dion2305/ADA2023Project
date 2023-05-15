@@ -11,7 +11,7 @@ class PaymentAPI:
             try:
                 payment = PaymentDAO(
                     user=authorized_email,
-                    password=post_data.get('bank'))
+                    bank=post_data.get('bank'))
                 session.add(payment)
                 session.commit()
                 responseObject = {
