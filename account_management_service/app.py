@@ -1,7 +1,7 @@
 from flask import Flask, request
 
 from db import Base, engine
-from resources.loginapi import AccountsAPI
+from resources.accountapi import AccountsAPI
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
@@ -34,16 +34,19 @@ def changepassword():
     req_data = request.get_json()
     return AccountsAPI.changepassword(req_data)
 
+
 @app.route('/removeaccount', methods=['POST'])
 def removeaccount():
     # Changes the password
     req_data = request.get_json()
     return AccountsAPI.removeaccount(req_data)
 
+
 @app.route('/addshippinginformation', methods=['POST'])
 def addshippinginformation():
     # Changes the password
     req_data = request.get_json()
     return AccountsAPI.addshippinginformation(req_data)
+
 
 app.run(host='0.0.0.0', port=5000)

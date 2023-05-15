@@ -1,7 +1,7 @@
 from flask import make_response, jsonify
 from daos.user_dao import UserDAO
 from db import Session
-from jwtutil import encode_auth_token
+from jwtutil import encode_auth_token, decode_auth_token
 
 
 class AccountsAPI:
