@@ -12,7 +12,7 @@ def pay():
     authorized = check_if_authorize(request)
     if authorized[0] == 200:
         req_data = request.get_json()
-        return PaymentAPI.pay(req_data, authorized[1]['data']['email'])
+        return PaymentAPI.pay(req_data, authorized[1].get('email'))
     else:
         responseObject = {
             'status': 'fail',
