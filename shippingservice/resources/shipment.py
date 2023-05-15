@@ -7,13 +7,13 @@ from db import Session
 
 class Shipment:
     @staticmethod
-    def create_shipment(post_data, authorized_user):
+    def create_shipment(post_data):
         session = Session()
         shipment = session.query(ShippingDAO).filter(ShippingDAO.user == authorized_user).first()
         if not shipment:
             try:
                 shipment = ShippingDAO(
-                    user = authorized_user,
+                    user = post_data.get('user_id'),
                     package_id = post_data.get('package_id'),
                     status = post_data.get('status'))
 
@@ -21,7 +21,8 @@ class Shipment:
                 session.commit()
                 responseObject = {
                     'status': 'success',
-                    'message': 'Successfully requested shipping.'
+                    'message': 'Successfully created shipping request.',
+                    'shipment_id': shipment.id
                     }
                 session.close()
                 return make_response(jsonify(responseObject)), 200
