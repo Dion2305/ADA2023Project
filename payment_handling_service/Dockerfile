@@ -9,7 +9,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy all files in training-db local host directory to /usr/src/myapp in Docker container
 COPY . .
 # Expose the port that our app runs in
-EXPOSE 5000
+EXPOSE 5001
 #Environment variables
 ENV AUTH_URL  http://accounts_ct:5000/verify
 # Run our App
