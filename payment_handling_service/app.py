@@ -11,7 +11,7 @@ app.config["DEBUG"] = True
 def pay():
     if check_if_authorize(request)[0] == 200:
         req_data = request.get_json()
-        return check_if_authorize(request)[1].json()
+        return check_if_authorize(request)[1].json() #test
         # return PaymentAPI.pay(req_data)
     else:
         responseObject = {
