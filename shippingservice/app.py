@@ -22,4 +22,4 @@ def get_shipment(s_id):
     return Shipment.get_shipment(s_id)
 
 
-app.run(host='0.0.0.0', port=5000)
+app.run(host='0.0.0.0', port=5002)
