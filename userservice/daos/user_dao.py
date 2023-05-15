@@ -28,6 +28,3 @@ class UserDAO(Base):
         self.zip = None
         self.registered_on = datetime.datetime.now()
         self.admin = admin
-
-    def ChangePassword(self, new_password):
-        self.password = new_password
