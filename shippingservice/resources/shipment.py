@@ -66,7 +66,7 @@ class Shipment:
         if shipment:
             text_out = {
                 "shipment_id:": s_id,
-                "user_id:": shipment.user_id,
+                "user_id:": shipment.user,
                 "package_id": shipment.package_id,
                 "status": shipment.status
             }
