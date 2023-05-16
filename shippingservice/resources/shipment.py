@@ -45,7 +45,7 @@ class Shipment:
                                json={"user": s_id})
 
         session.close()
-        return result.json()
+        return result
 
 
 
