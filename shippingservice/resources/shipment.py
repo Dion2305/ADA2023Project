@@ -44,10 +44,8 @@ class Shipment:
                                headers={"Content-type": "application/json"},
                                json={"user": s_id})
 
-        status_code = result.status_code
-        print(status_code)
         session.close()
-        return [status_code, result]
+        return result.json()
 
 
 

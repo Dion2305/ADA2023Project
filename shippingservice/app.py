@@ -19,6 +19,7 @@ def create_shipment():
 @app.route('/shipments/<s_id>', methods=['POST'])
 def get_shipment(s_id):
     result = Shipment.get_user_data(s_id)
+
     return result
 
 
