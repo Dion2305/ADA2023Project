@@ -213,7 +213,7 @@ class AccountsAPI:
         user = session.query(UserDAO).filter(UserDAO.id == post_data.get('user')).first()
         if user:
             responseObject = {
-                "user:": user.id,
+                "user": user.id,
                 "address": user.address,
                 "city": user.city,
                 "zip": user.zip
