@@ -11,7 +11,7 @@ class Shipment:
     def create_shipment(post_data):
         session = Session()
         user = get_user_data(post_data.get('user')).get('user')
-        if (post_data.get('status') == "payed") and (user != None):
+        if ((post_data.get('status') == "payed") and (user != None)):
             shipment = ShippingDAO(
                 user=post_data.get('user'),
                 package_id=post_data.get('package_id'),
@@ -26,12 +26,12 @@ class Shipment:
             }
             session.close()
             return make_response(jsonify(responseObject)), 200
-        else if (user == None):
-            responseObject = {
-                'status': 'Failed',
-                'message': 'No user with this id exists'
-            }
-            return make_response(jsonify(responseObject)), 202
+        # elif (user == None):
+        #     responseObject = {
+        #         'status': 'Failed',
+        #         'message': 'No user with this id exists'
+        #     }
+        #     return make_response(jsonify(responseObject)), 202
         else:
             responseObject = {
                 'status': 'Failed',
