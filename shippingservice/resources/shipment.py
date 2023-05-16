@@ -11,28 +11,28 @@ class Shipment:
     def create_shipment(post_data):
         session = Session()
         user = Shipment.get_user_data(post_data.get('user')).get('user')
-        print(user)
-        if ((post_data.get('status') == "payed") and (user != None)):
-            shipment = ShippingDAO(
-                user=post_data.get('user'),
-                package_id=post_data.get('package_id'),
-                status=post_data.get('status'))
+        if post_data.get('status') == "payed":
+            if user == post_data.get('user'):
+                shipment = ShippingDAO(
+                    user=post_data.get('user'),
+                    package_id=post_data.get('package_id'),
+                    status=post_data.get('status'))
 
-            session.add(shipment)
-            session.commit()
-            responseObject = {
-                'status': 'success',
-                'message': 'Successfully created shipping request.',
-                'shipment_id': shipment.id
-            }
-            session.close()
-            return make_response(jsonify(responseObject)), 200
-        # elif (user == None):
-        #     responseObject = {
-        #         'status': 'Failed',
-        #         'message': 'No user with this id exists'
-        #     }
-        #     return make_response(jsonify(responseObject)), 202
+                session.add(shipment)
+                session.commit()
+                responseObject = {
+                    'status': 'success',
+                    'message': 'Successfully created shipping request.',
+                    'shipment_id': shipment.id
+                }
+                session.close()
+                return make_response(jsonify(responseObject)), 200
+            else:
+                responseObject = {
+                    'status': 'Failed',
+                    'message': 'No user with this id exists'
+                }
+                return make_response(jsonify(responseObject)), 202
         else:
             responseObject = {
                 'status': 'Failed',
