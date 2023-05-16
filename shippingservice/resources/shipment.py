@@ -10,7 +10,7 @@ class Shipment:
     @staticmethod
     def create_shipment(post_data):
         session = Session()
-        user = Shipment.get_user_data(post_data.get('user')).get('user')
+        user = Shipment.get_user_data(post_data.get('user'))
         print(user)
         if ((post_data.get('status') == "payed") and (user != None)):
             shipment = ShippingDAO(
