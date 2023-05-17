@@ -13,6 +13,7 @@ class Reviews:
         session = Session()
         beer_id = body['beer_id']
         if not session.query(ReviewsDAO).filter(BeersDAO.id == beer_id).first():
+            session.close()
             return jsonify({'message': f'There is no beer with id {beer_id}'}), 404
         review = ReviewsDAO(body['beer_id'], body['user'], body['date'], body['rating'], body['review'])
         session.add(review)

@@ -52,3 +52,4 @@ class Beers:
             return jsonify({'message': f'There is no beer with id {beer_id}'}), 404
         else:
             return jsonify({'message': 'The beer instance was removed'}), 200
+            
