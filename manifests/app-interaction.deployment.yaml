@@ -16,11 +16,11 @@ spec:
         app: app-interaction
     spec:
       containers:
-      - image: gcr.io/ada2023/app-interaction:0.0.1 # Docker image name, that we pushed to GCR - use your project id
+      - image: gcr.io/ada-group2/app-interaction:0.0.1 # Docker image name, that we pushed to GCR - use your project id
         name: prediction-ui
         ports:
         - containerPort: 5000
           protocol: TCP
         env:
-        - name: ENV DB_URL
+        - name: DB_URL
           value: sqlite:///beers.db

@@ -16,14 +16,14 @@ spec:
         app: shipment
     spec:
       containers:
-      - image: gcr.io/ada2023/shipment:0.0.1 # Docker image name, that we pushed to GCR - use your project id
+      - image: gcr.io/ada-group2/shipment:0.0.1 # Docker image name, that we pushed to GCR - use your project id
         name: shipment
         ports:
         - containerPort: 5000
           protocol: TCP
         env:
         - name: DB_URL
-          value: sqlite://shipping.db
+          value: sqlite:///shipping.db
         env:
         - name: AUTH_URL
           value: http://accounts_ct:5000/get_user
