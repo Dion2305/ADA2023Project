@@ -6,7 +6,7 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 # Expose the port that this app runs on
-EXPOSE 5000
+EXPOSE 5003
 # Set the environment variables
 ENV DB_URL 'sqlite:///beers.db'
 CMD ["python3","app.py"]
