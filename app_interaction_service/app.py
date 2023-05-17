@@ -25,6 +25,7 @@ def delete_beer(beer_id):
 
 @app.route('/reviews', methods=['POST'])
 def create_review():
+    req_data = request.get_json()
     return Reviews.create(req_data)
 
 @app.route('/reviews/<beer_id>', methods=['GET'])
