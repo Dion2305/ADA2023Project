@@ -16,7 +16,7 @@ def check_if_authorize(req):
     if 'AUTH_URL' in os.environ:
         auth_url = os.environ['AUTH_URL']
     else:
-        auth_url = 'http://accounts_ct:5000/verify'
+        auth_url = 'http://accounts-ct:5000/verify'
     result = requests.post(auth_url,
                            headers={'Content-Type': 'application/json',
                                     'Authorization': auth_header})
