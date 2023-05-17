@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: payment-handling
+  name: payment-handling
+  namespace: myapps
+spec:
+  replicas: 2 # Creating two replicas of the POD
+  selector:
+    matchLabels:
+      app: payment-handling
+  template:
+    metadata:
+      labels:
+        app: payment-handling
+    spec:
+      containers:
+      - image: gcr.io/ada2023/payment-handling:0.0.1 # Docker image name, that we pushed to GCR
+        name: payment-handling
+        ports:
+        - containerPort: 5000
+          protocol: TCP
+        env:
+        - name: AUTH_URL
+          value: http://accounts_ct:5000/verify
+        - name:
+          value: http://accounts_ct:5000/pay_url

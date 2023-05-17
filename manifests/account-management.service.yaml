@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: prediction-api-service
+  name: account-management-service
   namespace: myapps
 spec:
   type: LoadBalancer
   ports:
-  - port: 5001
+  - port: 5000
     targetPort: 5000
   selector:
-    app: prediction-api
+    app: account-management

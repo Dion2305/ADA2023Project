@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: account-management
+  name: account-management
+  namespace: myapps
+spec:
+  replicas: 2 # Creating two replicas of the POD
+  selector:
+    matchLabels:
+      app: account-management
+  template:
+    metadata:
+      labels:
+        app: account-management
+    spec:
+      containers:
+      - image: gcr.io/ada2023/account-management:0.0.1 # Docker image name, that we pushed to GCR - use your project id
+        name: account-management
+        ports:
+        - containerPort: 5000
+          protocol: TCP
+        env:
+        - name: DB_URL
+          value: sqlite://delivery.db
+        - name: SECRET_KEY
+          value: key.txt
