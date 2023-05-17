@@ -12,15 +12,15 @@ class Reviews:
     def create(body):
         session = Session()
         beer_id = body['beer_id']
-        if session.query(ReviewsDAO).filter(BeersDAO.id == beer_id).first():
-            review = ReviewsDAO(body['beer_id'], body['user'], body['date'], body['rating'], body['review'])
-            session.add(review)
-            session.commit()
-            session.refresh(review)
+        if not session.query(BeersDAO).filter(BeersDAO.id == beer_id).first():
             session.close()
-            return jsonify({'review_id': review.id}), 200
+            return jsonify({'message': f'There is no beer with id {beer_id}'}), 404
+        review = ReviewsDAO(body['beer_id'], body['user'], body['rating'], body['review'])
+        session.add(review)
+        session.commit()
+        session.refresh(review)
         session.close()
-        return jsonify({'message': f'There is no beer with id {beer_id}'}), 404
+        return jsonify({'review_id': review.id}), 200
         
     
     @staticmethod
@@ -39,14 +39,14 @@ class Reviews:
                     "rating": beer_review.rating,
                     "review": beer_review.review
                 }
-                output[beer_review.id] = text_out
+                output[str(beer_review.id)] = text_out
                 ratings.append(beer_review.rating)
             output['average_rating'] = sum(ratings) / len(ratings)
             session.close()
             return jsonify(output), 200
         else:
             session.close()
-            return jsonify({'message': f'There is no beer with id {beer_id}'}), 404
+            return jsonify({'message': f'There are no reviews for this beer, or there is no beer with id {beer_id}'}), 404
 
     @staticmethod
     def delete(review_id):
