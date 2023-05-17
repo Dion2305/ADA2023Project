@@ -7,12 +7,13 @@ import os
 
 
 class Shipment:
+    #Function that creates a new shipment
     @staticmethod
     def create_shipment(post_data):
         session = Session()
         user = Shipment.get_user_data(post_data.get('user')).get('user')
-        if post_data.get('status') == "payed":
-            if user == post_data.get('user'):
+        if user == post_data.get('user'): #Check if user exists
+            if post_data.get('status') == "payed":  # Check if the user payed
                 shipment = ShippingDAO(
                     user=post_data.get('user'),
                     package_id=post_data.get('package_id'),
@@ -30,16 +31,17 @@ class Shipment:
             else:
                 responseObject = {
                     'status': 'Failed',
-                    'message': 'No user with this id exists'
+                    'message': 'Payment has not been received yet.'
                 }
                 return make_response(jsonify(responseObject)), 202
         else:
             responseObject = {
                 'status': 'Failed',
-                'message': 'Payment has not been received yet.'
+                'message': 'No user with this id exists'
             }
             return make_response(jsonify(responseObject)), 202
 
+    #Function that get the user data from the account service
     @staticmethod
     def get_user_data(s_id):
         session = Session()
