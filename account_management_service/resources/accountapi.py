@@ -91,7 +91,8 @@ class AccountsAPI:
                         'status': 'success',
                         'message': 'Successfully logged in.',
                         'auth_token': auth_token,
-                        'password': user.password
+                        'password': user.password,
+                        'subsciption_status': user.subscribed
                     }
                 return make_response(jsonify(responseObject)), 200
             else:
