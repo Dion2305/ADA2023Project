@@ -6,7 +6,7 @@ from db import Base
 
 
 class ShippingDAO(Base):
-    """ User Model for storing shipping related details """
+    """ Shipping Model for storing shipping related details """
     __tablename__ = "shipments"
 
     id = Column(Integer, primary_key=True)  # Auto generated primary key
