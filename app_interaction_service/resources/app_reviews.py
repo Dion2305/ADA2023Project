@@ -12,15 +12,16 @@ class Reviews:
     def create(body):
         session = Session()
         beer_id = body['beer_id']
-        if not session.query(ReviewsDAO).filter(BeersDAO.id == beer_id).first():
+        if session.query(ReviewsDAO).filter(BeersDAO.id == beer_id).first():
+            review = ReviewsDAO(body['beer_id'], body['user'], body['date'], body['rating'], body['review'])
+            session.add(review)
+            session.commit()
+            session.refresh(review)
             session.close()
-            return jsonify({'message': f'There is no beer with id {beer_id}'}), 404
-        review = ReviewsDAO(body['beer_id'], body['user'], body['date'], body['rating'], body['review'])
-        session.add(review)
-        session.commit()
-        session.refresh(review)
+            return jsonify({'review_id': review.id}), 200
         session.close()
-        return jsonify({'review_id': review.id}), 200
+        return jsonify({'message': f'There is no beer with id {beer_id}'}), 404
+        
     
     @staticmethod
     def get(beer_id):
