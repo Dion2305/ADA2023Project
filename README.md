@@ -13,10 +13,23 @@ Each folder contains everything that is needed to build one of the microservices
 Before the Kubernetes deployment can start, the Google Cloud Function from the track-trace-service needs to be created.
 The process for this is explained in the README in the folder for that service.
 
--- describe Kubernetes deployment --
+Then, the kubernetes cluster can be deployed by completing the following steps:
+* Create a trigger with cloudbuild_ml_components to build the docker containers
+* Create a kubernetes cluster in google cloud
+* In this cluster clone the repository
+* cd to the manifests folder
+* run "kubectl apply -f ." to start the pods
+* run "kubectl get services --namespace=myapps"
+* You can now use the external ips to run the functions in for example insomnia
+
+The app can also be run without using kubernetes. This method uses docker compose in a virtual machine. 
+* git clone in a vm
+* cd to ADA2023Project
+* sudo docker-compose up -d --build
+* You can now run all the methods described in the readme files
 
 
 A user can check the status of their shipment by pasting the shipmentId and login (email) they received
 in the following URL:
 your_trigger_url?arg1={email}&arg2={shipmentId}
--> https://us-central1-ada-group2.cloudfunctions.net/cal_http?arg1=person6&arg2=3856 
+-> https://us-central1-ada-group2.cloudfunctions.net/cal_http?arg1=person6&arg2=3856
