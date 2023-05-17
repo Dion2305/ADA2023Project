@@ -76,7 +76,7 @@ class Shipment:
         else:
             beer_url = 'http://appinteraction_ct:5003/packages/' + str(package_id)
 
-        result = requests.post(url=beer_url,
+        result = requests.get(url=beer_url,
                                headers={"Content-type": "application/json"})
 
         session.close()
