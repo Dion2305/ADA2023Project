@@ -12,22 +12,31 @@ class Shipment:
     def create_shipment(post_data):
         session = Session()
         user = Shipment.get_user_data(post_data.get('user')).get('user')
+        Package = Shipment.get_beer_data(post_data.get('package_id')).get('package_id')
         if user == post_data.get('user'): #Check if user exists
             if post_data.get('status') == "payed":  # Check if the user payed
-                shipment = ShippingDAO(
-                    user=post_data.get('user'),
-                    package_id=post_data.get('package_id'),
-                    status=post_data.get('status'))
+                if Package == post_data.get('package_id'):
+                    shipment = ShippingDAO(
+                        user=post_data.get('user'),
+                        package_id=post_data.get('package_id'),
+                        status=post_data.get('status'))
 
-                session.add(shipment)
-                session.commit()
-                responseObject = {
-                    'status': 'success',
-                    'message': 'Successfully created shipping request.',
-                    'shipment_id': shipment.id
-                }
-                session.close()
-                return make_response(jsonify(responseObject)), 200
+                    session.add(shipment)
+                    session.commit()
+                    responseObject = {
+                        'status': 'success',
+                        'message': 'Successfully created shipping request.',
+                        'shipment_id': shipment.id
+                    }
+                    session.close()
+                    return make_response(jsonify(responseObject)), 200
+                else:
+                    responseObject = {
+                        'status': 'Failed',
+                        'message': 'No package with this id exists.'
+                    }
+                    return make_response(jsonify(responseObject)), 202
+
             else:
                 responseObject = {
                     'status': 'Failed',
@@ -57,6 +66,22 @@ class Shipment:
         session.close()
         return result.json()
 
+
+    #Function that get the beer data from the beer service
+    @staticmethod
+    def get_beer_data(p_id):
+        session = Session()
+        if 'BEER_URL' in os.environ:
+            beer_url = os.environ['BEER_URL']
+        else:
+            beer_url = 'http://appinteraction_ct:5003/get_package'#TODO change name!!!
+
+        result = requests.post(url=auth_url,
+                               headers={"Content-type": "application/json"},
+                               json={"package_id": p_id})
+
+        session.close()
+        return result.json()
 
 
 
