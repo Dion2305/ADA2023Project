@@ -74,7 +74,7 @@ class Shipment:
         if 'BEER_URL' in os.environ:
             beer_url = os.environ['BEER_URL']
         else:
-            beer_url = 'http://appinteraction-ct:5003/packages/' + str(package_id)
+            beer_url = 'http://app-interaction-ct:5003/packages/' + str(package_id)
 
         result = requests.get(url=beer_url,
                                headers={"Content-type": "application/json"})
