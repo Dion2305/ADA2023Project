@@ -16,7 +16,7 @@ spec:
         app: payment-handling
     spec:
       containers:
-      - image: gcr.io/ada2023/payment-handling:0.0.1 # Docker image name, that we pushed to GCR
+      - image: gcr.io/ada-group2/payment-handling:0.0.1 # Docker image name, that we pushed to GCR
         name: payment-handling
         ports:
         - containerPort: 5000

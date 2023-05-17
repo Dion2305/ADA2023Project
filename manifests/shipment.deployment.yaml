@@ -16,7 +16,7 @@ spec:
         app: shipment
     spec:
       containers:
-      - image: gcr.io/ada2023/shipment:0.0.1 # Docker image name, that we pushed to GCR - use your project id
+      - image: gcr.io/ada-group2/shipment:0.0.1 # Docker image name, that we pushed to GCR - use your project id
         name: shipment
         ports:
         - containerPort: 5000
