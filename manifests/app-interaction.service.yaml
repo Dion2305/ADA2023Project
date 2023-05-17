@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: app-interaction-ct
+  name: app-interaction_ct
   namespace: myapps
 spec:
   type: LoadBalancer
