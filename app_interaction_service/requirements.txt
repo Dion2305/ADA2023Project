@@ -1,0 +1,9 @@
+flask-restful
+flask
+pandas
+numpy
+pyjwt
+requests
+sqlalchemy
+sqlalchemy-utils
+sqlalchemy-bigquery
