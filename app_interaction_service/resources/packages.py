@@ -11,6 +11,10 @@ class Packages:
     @staticmethod
     def create(body):
         session = Session()
+        for beer_id in body.values():
+            if not session.query(BeersDAO).filter(BeersDAO.id == beer_id).first():
+                session.close()
+                return jsonify({'message': f'There is no beer with id {beer_id}'}), 404
         package = PackagesDAO(body['beer_id1'], body['beer_id2'], body['beer_id3'], body['beer_id4'], body['beer_id5'], body['beer_id6'])
         session.add(package)
         session.commit()
