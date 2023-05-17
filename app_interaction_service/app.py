@@ -5,7 +5,6 @@ from db import Base, engine
 from resources.app_beers import Beers
 from resources.app_reviews import Reviews
 from resources.packages import Packages
-import json
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
@@ -37,14 +36,6 @@ def create_beer():
         return make_response(jsonify(responseObject)), 401
     req_data = request.get_json()
     return Beers.create(req_data)
-
-@app.route('/dummydata', methods=['POST'])
-def import_dummy_data():
-    responses = {}
-    req_data = request.get_json()
-    for beer in req_data['beers']:
-        responses[beer['beer_name']] = Beers.create(beer)[0].get_json()
-    return jsonify(responses), 200
 
 @app.route('/beers/<beer_id>', methods=['GET'])
 def get_beer(beer_id):

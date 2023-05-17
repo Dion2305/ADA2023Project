@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: shipment-service
+  name: shipment-ct
   namespace: myapps
 spec:
   type: LoadBalancer
