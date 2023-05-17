@@ -205,6 +205,9 @@ class AccountsAPI:
             }
             return make_response(jsonify(responseObject)), 500
 
+        def change_payed():
+            return
+
     @staticmethod
     def get_user(post_data):
         session = Session()
@@ -223,3 +226,19 @@ class AccountsAPI:
         else:
             session.close()
             return jsonify({'message': f'There is no user with this id'}), 404
+
+    @staticmethod
+    def change_payed_status(post_data):
+        session = Session()
+        user = session.query(UserDAO).filter(UserDAO.email == post_data.get('email')).first()
+        if user:
+            user.subscribed = True
+            session.commit()
+            responseObject = {
+                "message": "payed status succesfully changed"
+            }
+            session.close()
+            return make_response(jsonify(responseObject)), 200
+        else:
+            session.close()
+            return jsonify({'message': f'There is no user with this email'}), 404
