@@ -23,6 +23,6 @@ spec:
           protocol: TCP
         env:
         - name: DB_URL
-          value: sqlite://delivery.db
+          value: sqlite:///delivery.db
         - name: SECRET_KEY
           value: key.txt
