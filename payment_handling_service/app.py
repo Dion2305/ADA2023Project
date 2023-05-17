@@ -16,7 +16,7 @@ def pay():
     if 'PAY_URL' in os.environ:
         pay_url = os.environ['PAY_URL']
     else:
-        pay_url = 'http://accounts_ct:5000/pay_url'
+        pay_url = 'http://accounts-ct:5000/pay_url'
     if authorized[0] == 200:
         req_data = request.get_json()
         requests.post(pay_url,
@@ -37,7 +37,7 @@ def check_if_authorize(req):
     if 'AUTH_URL' in os.environ:
         auth_url = os.environ['AUTH_URL']
     else:
-        auth_url = 'http://accounts_ct:5000/verify'
+        auth_url = 'http://accounts-ct:5000/verify'
     result = requests.post(auth_url,
                            headers={'Content-Type': 'application/json',
                                     'Authorization': auth_header})

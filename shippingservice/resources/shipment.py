@@ -57,7 +57,7 @@ class Shipment:
         if 'AUTH_URL' in os.environ:
             auth_url = os.environ['AUTH_URL']
         else:
-            auth_url = 'http://accounts_ct:5000/get_user'
+            auth_url = 'http://accounts-ct:5000/get_user'
 
         result = requests.post(url=auth_url,
                                headers={"Content-type": "application/json"},
@@ -74,7 +74,7 @@ class Shipment:
         if 'BEER_URL' in os.environ:
             beer_url = os.environ['BEER_URL']
         else:
-            beer_url = 'http://appinteraction_ct:5003/packages/' + str(package_id)
+            beer_url = 'http://appinteraction-ct:5003/packages/' + str(package_id)
 
         result = requests.get(url=beer_url,
                                headers={"Content-type": "application/json"})

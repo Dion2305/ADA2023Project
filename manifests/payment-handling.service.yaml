@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: payment_ct
+  name: payment-ct
   namespace: myapps
 spec:
   type: LoadBalancer

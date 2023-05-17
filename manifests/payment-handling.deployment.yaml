@@ -23,6 +23,6 @@ spec:
           protocol: TCP
         env:
         - name: AUTH_URL
-          value: http://accounts_ct:5000/verify
+          value: http://accounts-ct:5000/verify
         - name: PAY_URL
-          value: http://accounts_ct:5000/pay_url
+          value: http://accounts-ct:5000/pay_url

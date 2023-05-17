@@ -11,8 +11,8 @@ COPY . .
 # Expose the port that our app runs in
 EXPOSE 5001
 #Environment variables
-ENV AUTH_URL  http://accounts_ct:5000/verify
-ENV PAY_URL http://accounts_ct:5000/pay_url
+ENV AUTH_URL  http://accounts-ct:5000/verify
+ENV PAY_URL http://accounts-ct:5000/pay_url
 ENV DB_URL 'sqlite:///user.db'
 # Run our App
 CMD ["python3", "app.py"]

@@ -26,4 +26,4 @@ spec:
           value: sqlite:///shipping.db
         env:
         - name: AUTH_URL
-          value: http://accounts_ct:5000/get_user
+          value: http://accounts-ct:5000/get_user
