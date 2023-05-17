@@ -7,6 +7,7 @@ from jwtutil import encode_auth_token, decode_auth_token
 class AccountsAPI:
     @staticmethod
     def create(post_data):
+        "Registers a user if user does not have an account already"
         session = Session()
         # check if user already exists
         user = session.query(UserDAO).filter(UserDAO.id == post_data.get('email')).first()
@@ -44,6 +45,7 @@ class AccountsAPI:
 
     @staticmethod
     def get(auth_header):
+        "Gets user information"
         if auth_header:
             auth_token = auth_header.split(" ")[1]
         else:
@@ -78,6 +80,7 @@ class AccountsAPI:
             return make_response(jsonify(responseObject)), 401
     @staticmethod
     def login(post_data):
+        "Login user"
         try:
             # fetch the user data
             session = Session()
@@ -109,7 +112,7 @@ class AccountsAPI:
             return make_response(jsonify(responseObject)), 500
 
     def changepassword(post_data):
-
+        "Changes the password of the user if they give the correct current password"
         try:
             # fetch the user data
             session = Session()
@@ -141,7 +144,7 @@ class AccountsAPI:
 
 
     def removeaccount(post_data):
-
+        "Removes account from database when password entered is correct"
         try:
             # fetch the user data
             session = Session()
@@ -172,7 +175,7 @@ class AccountsAPI:
 
 
     def addshippinginformation(post_data):
-
+        "Adds shipping information to user database"
         try:
             # fetch the user data
             session = Session()
@@ -208,6 +211,7 @@ class AccountsAPI:
 
     @staticmethod
     def get_user(post_data):
+        "Obtains user information for shipping service interaction"
         session = Session()
         # https://docs.sqlalchemy.org/en/14/orm/query.html
         # https://www.tutorialspoint.com/sqlalchemy/sqlalchemy_orm_using_query.htm
@@ -227,6 +231,7 @@ class AccountsAPI:
 
     @staticmethod
     def change_payed_status(post_data):
+        "Changes the user.subscribed status if succesful payment occured"
         session = Session()
         user = session.query(UserDAO).filter(UserDAO.email == post_data.get('email')).first()
         if user:

@@ -11,6 +11,7 @@ Base.metadata.create_all(engine)
 
 @app.route('/pay', methods=['POST'])
 def pay():
+    "Pay function with authorization function and sends post request for user.subscribed change to account api"
     authorized = check_if_authorize(request)
     if 'PAY_URL' in os.environ:
         pay_url = os.environ['PAY_URL']
@@ -31,6 +32,7 @@ def pay():
 
 
 def check_if_authorize(req):
+    "Checks authorization token"
     auth_header = req.headers['Authorization']
     if 'AUTH_URL' in os.environ:
         auth_url = os.environ['AUTH_URL']

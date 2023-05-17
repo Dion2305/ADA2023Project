@@ -5,6 +5,7 @@ from daos.payment_dao import PaymentDAO
 class PaymentAPI:
     @staticmethod
     def pay(post_data, authorized_email):
+        "Handles payment information and submits payment information to database"
         session = Session()
         payment = session.query(PaymentDAO).filter(PaymentDAO.user == authorized_email and PaymentDAO.confirmed == True).first()
         if not payment:
