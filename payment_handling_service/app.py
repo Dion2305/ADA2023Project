@@ -12,15 +12,15 @@ Base.metadata.create_all(engine)
 @app.route('/pay', methods=['POST'])
 def pay():
     authorized = check_if_authorize(request)
-    if 'PAY_URL' in os.environ:
-        pay_url = os.environ['AUTH_URL']
-    else:
-        pay_url = 'http://accounts_ct:5000/pay_url'
+    # if 'PAY_URL' in os.environ:
+    #     pay_url = os.environ['AUTH_URL']
+    # else:
+    #     pay_url = 'http://accounts_ct:5000/pay_url'
     if authorized[0] == 200:
         req_data = request.get_json()
-        requests.post(pay_url,
-                      headers={'Content-Type': 'application/json'},
-                      json={'email': authorized[1]['data']['email']})
+        # requests.post(pay_url,
+        #               headers={'Content-Type': 'application/json'},
+        #               json={'email': authorized[1]['data']['email']})
         return PaymentAPI.pay(req_data, authorized[1]['data']['email'])
     else:
         responseObject = {

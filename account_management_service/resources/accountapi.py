@@ -206,9 +206,6 @@ class AccountsAPI:
             }
             return make_response(jsonify(responseObject)), 500
 
-        def change_payed():
-            return
-
     @staticmethod
     def get_user(post_data):
         session = Session()
