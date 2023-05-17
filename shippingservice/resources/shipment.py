@@ -12,10 +12,10 @@ class Shipment:
     def create_shipment(post_data):
         session = Session()
         user = Shipment.get_user_data(post_data.get('user')).get('user')
-        Package = Shipment.get_beer_data(post_data.get('package_id')).get('package_id')
+        package = Shipment.get_beer_data(post_data.get('package_id')).get('package_id')
         if user == post_data.get('user'): #Check if user exists
             if post_data.get('status') == "payed":  # Check if the user payed
-                if Package == post_data.get('package_id'):
+                if package == post_data.get('package_id'):
                     shipment = ShippingDAO(
                         user=post_data.get('user'),
                         package_id=post_data.get('package_id'),
@@ -69,16 +69,15 @@ class Shipment:
 
     #Function that get the beer data from the beer service
     @staticmethod
-    def get_beer_data(p_id):
+    def get_beer_data(package_id):
         session = Session()
         if 'BEER_URL' in os.environ:
             beer_url = os.environ['BEER_URL']
         else:
-            beer_url = 'http://appinteraction_ct:5003/get_package'#TODO change name!!!
+            beer_url = 'http://appinteraction_ct:5003/packages/' + package_id
 
         result = requests.post(url=auth_url,
-                               headers={"Content-type": "application/json"},
-                               json={"package_id": p_id})
+                               headers={"Content-type": "application/json"})
 
         session.close()
         return result.json()
