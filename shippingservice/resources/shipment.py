@@ -13,9 +13,11 @@ class Shipment:
         session = Session()
         user = Shipment.get_user_data(post_data.get('user')).get('user')
         package = Shipment.get_beer_data(post_data.get('package_id')).get('package_id')
-        if str(user) == str(post_data.get('user')): #Check if user exists
+        if int(user) == int(post_data.get('user')): #Check if user exists
             if post_data.get('status') == "payed":  # Check if the user payed
-                if str(package) == str(post_data.get('package_id')):
+                print(package)
+                print(post_data.get('package_id'))
+                if int(package) == int(post_data.get('package_id')):
                     shipment = ShippingDAO(
                         user=post_data.get('user'),
                         package_id=post_data.get('package_id'),
