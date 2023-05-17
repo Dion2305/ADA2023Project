@@ -9,4 +9,5 @@ COPY . .
 EXPOSE 5003
 # Set the environment variables
 ENV DB_URL 'sqlite:///beers.db'
+#Run App
 CMD ["python3","app.py"]
